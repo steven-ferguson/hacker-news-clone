@@ -1,0 +1,11 @@
+<% if object.comments.any? %>
+  <ul>
+    <% object.comments.each do |comment| %>
+      <li>
+        <%= comment.content %>
+        <%= link_to 'Comment', new_comment_path(:comment_id => comment.id, :object_type => :comment) %>
+        <%= render 'partials/comments', object: comment %>
+      </li>  
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,16 @@
+<ul class="no-bullet">
+  <% @links.each_with_index do |link, index| %>
+    <li>
+      <%= link_to link.url, link.url %>
+      Posted on:
+      <%= link.created_at.localtime.strftime("%d %b'%y, %H:%M") %>
+      | Votes: <%= link.votes.count %> 
+      <%= link_to 'Upvote', votes_path(link_id: link.id), :method => :post, :id =>"link-#{index + 1}"%>
+      | <%= link_to 'Comment', new_comment_path(link_id: link.id, :object_type => :link) %>
+      | <a class="comments">View comments</a>
+      <div class="hidden">
+        <%= render 'partials/comments', object: link %>
+      </div>
+    </li>
+  <% end %>
+</ul>  
